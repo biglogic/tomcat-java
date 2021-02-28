@@ -80,7 +80,7 @@
   template:
     src: tomcat-users.xml.j2
     dest: /usr/share/tomcat/conf/tomcat-users.xml
-  notify: restart tomcat
+
 
 - name: Allow access to Manager and Host Manager apps from any IP
   template:
@@ -89,18 +89,11 @@
   with_items:
     - /usr/share/tomcat/webapps/host-manager/META-INF/context.xml
     - /usr/share/tomcat/webapps/manager/META-INF/context.xml
-  notify: restart tomcat
+
 
 - name: install nginx 
-  yum :
-    name: nginx  
-
-- name: checking service status
-  command: systemctl status "{{ item }}"    
-  with_items:
-      - nginx 
-      - tomcat 
-
+  apt:
+    name: nginx   
   notify: "start services"
 
     

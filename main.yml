@@ -4,24 +4,19 @@
       become: yes
       become_user: root 
       gather_facts: yes
-      vars:
-        tomcat_ver: 9.0.30                          
-        ui_manager_user: manager                   
-        ui_manager_pass: Str0ngManagerP@ssw3rd      
-        ui_admin_username: admin                    
-        ui_admin_pass: Str0ngAdminP@ssw3rd          
+      
       tasks:
         - include_role: 
              name: tomcat
           when: ansible_facts['distribution'] == "CentOS"
           tags: centos
           
-
-         
         - include_role:
             name: tomcat 
           when:  ansible_facts['distribution'] == "Ubuntu"       
-          tags: ubuntu    
+          tags: ubuntu    Description - optional InfoDescription - optional Info
+          
+          
           
 
                  
